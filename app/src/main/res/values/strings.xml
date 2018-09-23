@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">濒湖</string>
+    <string name="nav_herb_title">中药</string>
+    <string name="nav_prescription_title">方剂</string>
+    <string name="nav_sphygmology_title">脉学</string>
+    <string name="nav_channel_title">经络</string>
+    <string name="read_pic">识图</string>
+    <string name="drawer_close">关闭</string>
+    <string name="drawer_open">打开</string>
+    <string name="update">更新数据</string>
+    <string name="search">查询中药</string>
+    <string name="please_login">点击头像登录</string>
+    <string name="label1">标题1</string>
 </resources>

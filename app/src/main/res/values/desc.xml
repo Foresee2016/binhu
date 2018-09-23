@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="head_img_desc">用户头像</string>
+    <string name="btn_desc">未定义按钮</string>
+</resources>

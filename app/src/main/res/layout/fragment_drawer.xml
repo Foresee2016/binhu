@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bgDrawer">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/user_const_pane"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:paddingTop="48dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/head_img"
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            android:src="@drawable/head_img_holder"
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/head_img_desc"/>
+
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/please_login"
+            app:layout_constraintTop_toBottomOf="@id/head_img" />
+    </android.support.constraint.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/drawer_item_pane"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/footer_btn_pane"
+        app:layout_constraintTop_toBottomOf="@id/user_const_pane"
+        android:paddingTop="12dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label1" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/footer_btn_pane"
+        android:layout_width="match_parent"
+        android:layout_height="128dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageButton
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:src="@android:drawable/btn_star"
+            android:contentDescription="@string/btn_desc" />
+
+        <ImageButton
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:src="@android:drawable/btn_star"
+            android:contentDescription="@string/btn_desc"/>
+
+        <ImageButton
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:src="@android:drawable/btn_star"
+            android:contentDescription="@string/btn_desc"/>
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
