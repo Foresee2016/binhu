@@ -9,5 +9,5 @@
     <color name="tab_text_normal">#b1b1b1</color>
     <color name="tab_text_selected">#000</color>
     <color name="bgTab">#ffffff</color>
-    <color name="bgContent">#cfcfcf</color>
+    <color name="bgContent">#a7a7a7</color>
 </resources>

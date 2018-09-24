@@ -5,25 +5,32 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MedicineFragment extends Fragment {
     public static MedicineFragment newInstance(Callbacks callbacks) {
-        MedicineFragment fragment=new MedicineFragment();
+        MedicineFragment fragment = new MedicineFragment();
         fragment.setCallbacks(callbacks);
         return fragment;
     }
 
-    private static final String ARGS_CALLBACKS="CallBacks";
+    private static final String ARGS_CALLBACKS = "CallBacks";
     private Callbacks mCallbacks;
 
     private Toolbar mToolbar;
     private TabLayout mTabLayout;
+    private ViewPager mViewPager;
+    private String[] mTitles = new String[]{"全部", "上品", "温", "凉", "寒"};
+    private Fragment[] mFragments = new Fragment[mTitles.length];
 
     @Nullable
     @Override
@@ -31,30 +38,21 @@ public class MedicineFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_medicine, container, false);
         mToolbar = view.findViewById(R.id.tool_bar);
         initToolbar();
-        mTabLayout=view.findViewById(R.id.tab_layout);
-//        mTabLayout.
-//        mBottomNavigationView = view.findViewById(R.id.nav_bottom);
-//        mBottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-//            @Override
-//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//                switch (item.getItemId()) {
-//                    case R.id.medicine:
-//                        Toast.makeText(getActivity(), "PK", Toast.LENGTH_SHORT).show();
-//                        return true;
-//                    case R.id.prescription:
-//                        Toast.makeText(getActivity(), "主页", Toast.LENGTH_SHORT).show();
-//                        return true;
-//                    case R.id.sphygmology:
-//                        Toast.makeText(getActivity(), "我的", Toast.LENGTH_SHORT).show();
-//                        return true;
-//                    case R.id.channel:
-//                        Toast.makeText(getActivity(), "我的", Toast.LENGTH_SHORT).show();
-//                        return true;
-//                    default:
-//                        return false;
-//                }
-//            }
-//        });
+        for (int i = 0; i < mFragments.length; i++) {
+            mFragments[i] = MedicineAllFragment.newInstance();
+        }
+        mViewPager = view.findViewById(R.id.view_pager);
+        mViewPager.setAdapter(new TabsAdapter(getChildFragmentManager(), mFragments, mTitles));
+        mTabLayout = view.findViewById(R.id.tab_layout);
+        mTabLayout.setupWithViewPager(mViewPager);
+        for (int i = 0; i < mTitles.length; i++) {
+            TabLayout.Tab item=mTabLayout.getTabAt(i);
+            if(item!=null){
+                item.setCustomView(R.layout.icon_text_view);
+                TextView textView = (TextView) item.getCustomView();
+                textView.setText(mTitles[i]);
+            }
+        }
         return view;
     }
 
@@ -90,12 +88,28 @@ public class MedicineFragment extends Fragment {
         mCallbacks = callbacks;
     }
 
-    public interface Callbacks{
+    public interface Callbacks {
         void onToolbarNavClick();
     }
-    public static class TabFragment extends Fragment{
-        public static TabFragment newInstance(){
-            return new TabFragment();
+
+    public class TabsAdapter extends FragmentPagerAdapter {
+        private Fragment[] mFragments;
+        private String[] mTitles;
+
+        public TabsAdapter(FragmentManager fm, Fragment[] fragments, String[] titles) {
+            super(fm);
+            mFragments = fragments;
+            mTitles = titles;
+        }
+
+        @Override
+        public Fragment getItem(int i) {
+            return mFragments[i];
+        }
+
+        @Override
+        public int getCount() {
+            return mFragments.length;
         }
     }
 }

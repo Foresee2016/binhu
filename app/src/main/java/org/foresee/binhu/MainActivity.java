@@ -49,11 +49,10 @@ public class MainActivity extends AppCompatActivity implements MedicineFragment.
         for (int i = 0; i < mFragments.length; i++) {
             TabLayout.Tab item = mNavBottom.getTabAt(i);
             if (item != null) {
-                View layout = LayoutInflater.from(this).inflate(R.layout.icon_text_view, null);
-                TextView textView = layout.findViewById(R.id.text_view);
+                item.setCustomView(R.layout.icon_text_view);
+                TextView textView = (TextView) item.getCustomView();
                 textView.setText(mTitles[i]);
                 textView.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(mResNormalIcons[i]), null, null);
-                item.setCustomView(textView);
             }
         }
         mNavBottom.getTabAt(0).getCustomView().setSelected(true);
