@@ -3,7 +3,7 @@ package org.foresee.binhu;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -23,13 +23,16 @@ public class MedicineFragment extends Fragment {
     private Callbacks mCallbacks;
 
     private Toolbar mToolbar;
+    private TabLayout mTabLayout;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_main, container, false);
+        View view = inflater.inflate(R.layout.fragment_medicine, container, false);
         mToolbar = view.findViewById(R.id.tool_bar);
         initToolbar();
+        mTabLayout=view.findViewById(R.id.tab_layout);
+//        mTabLayout.
 //        mBottomNavigationView = view.findViewById(R.id.nav_bottom);
 //        mBottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
 //            @Override
@@ -89,5 +92,10 @@ public class MedicineFragment extends Fragment {
 
     public interface Callbacks{
         void onToolbarNavClick();
+    }
+    public static class TabFragment extends Fragment{
+        public static TabFragment newInstance(){
+            return new TabFragment();
+        }
     }
 }

@@ -1,53 +1,88 @@
 package org.foresee.binhu;
 
-import android.content.Context;
 import android.support.annotation.Nullable;
-import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.AdapterView;
-import android.widget.BaseAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class MainActivity extends AppCompatActivity implements MedicineFragment.Callbacks{
+public class MainActivity extends AppCompatActivity implements MedicineFragment.Callbacks {
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mActionBarDrawerToggle;
-    private BottomNavigationView mBottomNavigationView;
+    private ViewPager mViewPager;
+    private TabLayout mNavBottom;
+    private String[] mTitles = new String[]{"中药", "方剂", "脉学", "经络"};
+    private Fragment[] mFragments = new Fragment[mTitles.length];
+    private int[] mResNormalIcons = new int[]{R.drawable.selector_ic_leaf,
+            R.drawable.selector_ic_prescript,
+            R.drawable.selector_ic_sphygmology,
+            R.drawable.selector_ic_channel};
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
-        mDrawerLayout=findViewById(R.id.main_drawer);
-        mActionBarDrawerToggle=new ActionBarDrawerToggle(this, mDrawerLayout, R.string.app_name, R.string.app_name);
+        mDrawerLayout = findViewById(R.id.main_drawer);
+        mActionBarDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.app_name, R.string.app_name);
         mDrawerLayout.addDrawerListener(mActionBarDrawerToggle);
-        FragmentManager fm=getSupportFragmentManager();
-        Fragment contentFrame=fm.findFragmentById(R.id.content_frame);
-        if(contentFrame==null){
-            contentFrame=MedicineFragment.newInstance(this);
-            fm.beginTransaction().add(R.id.content_frame, contentFrame).commit();
+        // 4 Main Fragment
+        mFragments[0] = MedicineFragment.newInstance(this);
+        mFragments[1] = PrescriptFragment.newInstance();
+        mFragments[2] = PrescriptFragment.newInstance();
+        mFragments[3] = PrescriptFragment.newInstance();
+        // Nav Bottom bar
+        mViewPager = findViewById(R.id.view_pager);
+        mViewPager.setAdapter(new NavBottomAdapter(getSupportFragmentManager(), mFragments, mTitles));
+        mNavBottom = findViewById(R.id.nav_bottom);
+        mNavBottom.setupWithViewPager(mViewPager);
+        for (int i = 0; i < mFragments.length; i++) {
+            TabLayout.Tab item = mNavBottom.getTabAt(i);
+            if (item != null) {
+                View layout = LayoutInflater.from(this).inflate(R.layout.icon_text_view, null);
+                TextView textView = layout.findViewById(R.id.text_view);
+                textView.setText(mTitles[i]);
+                textView.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(mResNormalIcons[i]), null, null);
+                item.setCustomView(textView);
+            }
         }
-        Fragment drawerFrame=fm.findFragmentById(R.id.drawer_frame);
-        if(drawerFrame==null){
-            drawerFrame=DrawerFragment.newInstance();
+        mNavBottom.getTabAt(0).getCustomView().setSelected(true);
+        mNavBottom.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                tab.getCustomView().setSelected(true);
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+                tab.getCustomView().setSelected(false);
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+        FragmentManager fm = getSupportFragmentManager();
+//        Fragment contentFrame = fm.findFragmentById(R.id.content_frame);
+//        if (contentFrame == null) {
+//
+//            contentFrame = MedicineFragment.newInstance(this);
+//            fm.beginTransaction().add(R.id.content_frame, contentFrame).commit();
+//        }
+        Fragment drawerFrame = fm.findFragmentById(R.id.drawer_frame);
+        if (drawerFrame == null) {
+            drawerFrame = DrawerFragment.newInstance();
             fm.beginTransaction().add(R.id.drawer_frame, drawerFrame).commit();
         }
     }
@@ -57,4 +92,24 @@ public class MainActivity extends AppCompatActivity implements MedicineFragment.
         mDrawerLayout.openDrawer(GravityCompat.START);
     }
 
+    public class NavBottomAdapter extends FragmentPagerAdapter {
+        private Fragment[] mFragments;
+        private String[] mTitles;
+
+        public NavBottomAdapter(FragmentManager fm, Fragment[] fragments, String[] titles) {
+            super(fm);
+            mFragments = fragments;
+            mTitles = titles;
+        }
+
+        @Override
+        public Fragment getItem(int i) {
+            return mFragments[i];
+        }
+
+        @Override
+        public int getCount() {
+            return mFragments.length;
+        }
+    }
 }

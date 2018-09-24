@@ -11,4 +11,8 @@
     <string name="search">查询中药</string>
     <string name="please_login">点击头像登录</string>
     <string name="label1">标题1</string>
+    <string name="btn_name">按钮</string>
+    <string name="medicine_tab_all">全部</string>
+    <string name="medicine_tab_five_flavors">五味</string>
+    <string name="medicine_tab_four_natures">四气</string>
 </resources>
