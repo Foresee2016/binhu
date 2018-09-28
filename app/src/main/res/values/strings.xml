@@ -28,4 +28,5 @@
     <string name="help">帮助</string>
     <string name="update_setting">更新设置</string>
     <string name="logout">退出登录</string>
+    <string name="separator">分隔符</string>
 </resources>

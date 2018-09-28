@@ -25,7 +25,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tool_bar">
 
-        <ImageView style="@style/setting_vertical_separator" />
+        <View style="@style/setting_vertical_separator" />
 
         <TextView
             style="@style/setting_item.right_arrow"
@@ -35,13 +35,13 @@
             style="@style/setting_item.right_arrow"
             android:text="@string/help" />
 
-        <ImageView style="@style/setting_vertical_separator" />
+        <View style="@style/setting_vertical_separator" />
 
         <TextView
             style="@style/setting_item.right_arrow"
             android:text="@string/update_setting" />
 
-        <ImageView style="@style/setting_vertical_separator" />
+        <View style="@style/setting_vertical_separator" />
 
         <TextView
             android:id="@+id/logout"
