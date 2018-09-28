@@ -40,4 +40,24 @@
         <item name="android:drawablePadding">2dp</item>
         <item name="android:textColor">@color/selector_nav_bottom</item>
     </style>
+
+    <style name="setting_vertical_separator">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">8dp</item>
+        <item name="android:background">@color/bgContent</item>
+    </style>
+
+    <style name="setting_item">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:gravity">left</item>
+        <item name="android:background">@color/white</item>
+    </style>
+    <style name="setting_item.right_arrow">
+        <item name="android:drawableEnd">@drawable/ic_right_arrow</item>
+    </style>
 </resources>

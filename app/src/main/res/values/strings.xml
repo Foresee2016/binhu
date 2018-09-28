@@ -24,4 +24,8 @@
     <string name="home">首页</string>
     <string name="history">历史记录</string>
     <string name="star">收藏夹</string>
+    <string name="clear_storage">清理存储空间</string>
+    <string name="help">帮助</string>
+    <string name="update_setting">更新设置</string>
+    <string name="logout">退出登录</string>
 </resources>
