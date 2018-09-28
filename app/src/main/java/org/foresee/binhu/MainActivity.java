@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements MedicineFragment.
             R.drawable.selector_ic_prescript,
             R.drawable.selector_ic_sphygmology,
             R.drawable.selector_ic_channel};
-
+    private DrawerFragment.DrawerMenuClickListener mDrawerMenuClickListener;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,7 +81,18 @@ public class MainActivity extends AppCompatActivity implements MedicineFragment.
 //        }
         Fragment drawerFrame = fm.findFragmentById(R.id.drawer_frame);
         if (drawerFrame == null) {
-            drawerFrame = DrawerFragment.newInstance();
+            mDrawerMenuClickListener=new DrawerFragment.DrawerMenuClickListener() {
+                @Override
+                public void onMenuClicked(int viewId) {
+                    //TODO 激活对应viewId的Fragment，填充进主框
+                }
+
+                @Override
+                public int getCurrentMenuId() {
+                    return R.id.home;
+                }
+            };
+            drawerFrame = DrawerFragment.newInstance(mDrawerMenuClickListener);
             fm.beginTransaction().add(R.id.drawer_frame, drawerFrame).commit();
         }
     }

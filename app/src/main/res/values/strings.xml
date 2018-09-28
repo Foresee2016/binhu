@@ -15,4 +15,13 @@
     <string name="medicine_tab_all">全部</string>
     <string name="medicine_tab_five_flavors">五味</string>
     <string name="medicine_tab_four_natures">四气</string>
+    <string name="setting">设置</string>
+    <string name="theme">主题</string>
+    <string name="moon">夜间</string>
+    <string name="desc_btn_setting">软件设置</string>
+    <string name="desc_btn_theme">选择软件界面主题</string>
+    <string name="desc_btn_moon">夜间护眼模式</string>
+    <string name="home">首页</string>
+    <string name="history">历史记录</string>
+    <string name="star">收藏夹</string>
 </resources>
