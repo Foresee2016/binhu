@@ -9,9 +9,7 @@
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/tool_bar"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:background="@color/pink"
+        style="@style/toolbar"
         app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="@drawable/ic_menu"
         app:subtitleTextColor="#ffffff"
