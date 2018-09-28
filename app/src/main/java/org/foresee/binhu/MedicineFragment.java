@@ -29,7 +29,7 @@ public class MedicineFragment extends Fragment {
     private Toolbar mToolbar;
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
-    private String[] mTitles = new String[]{"全部", "推荐", "分类", "最近更新"};
+    private String[] mTitles = new String[]{"全部", "推荐", "分类", "最近更新", "搜索中药"};
     private Fragment[] mFragments = new Fragment[mTitles.length];
 
     @Nullable
@@ -50,7 +50,9 @@ public class MedicineFragment extends Fragment {
             if(item!=null){
                 item.setCustomView(R.layout.icon_text_view);
                 TextView textView = (TextView) item.getCustomView();
-                textView.setText(mTitles[i]);
+                if (textView != null) {
+                    textView.setText(mTitles[i]);
+                }
             }
         }
         return view;
@@ -67,9 +69,6 @@ public class MedicineFragment extends Fragment {
                         return true;
                     case R.id.update:
                         Toast.makeText(getActivity(), "Update data", Toast.LENGTH_SHORT).show();
-                        return true;
-                    case R.id.search:
-                        Toast.makeText(getActivity(), "Search Medicine", Toast.LENGTH_SHORT).show();
                         return true;
                     default:
                         return false;
