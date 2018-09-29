@@ -11,4 +11,9 @@
         android:icon="@drawable/ic_update_data"
         android:title="@string/update"
         app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/search_medicine"
+        android:title="@string/search_medicine"
+        android:icon="@drawable/ic_search"
+        app:showAsAction="ifRoom" />
 </menu>

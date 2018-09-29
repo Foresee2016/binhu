@@ -1,5 +1,6 @@
 package org.foresee.binhu;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -29,7 +30,7 @@ public class MedicineFragment extends Fragment {
     private Toolbar mToolbar;
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
-    private String[] mTitles = new String[]{"全部", "推荐", "分类", "最近更新", "搜索中药"};
+    private String[] mTitles = new String[]{"全部", "最近更新", "搜索", "分类"};
     private Fragment[] mFragments = new Fragment[mTitles.length];
 
     @Nullable
@@ -69,6 +70,10 @@ public class MedicineFragment extends Fragment {
                         return true;
                     case R.id.update:
                         Toast.makeText(getActivity(), "Update data", Toast.LENGTH_SHORT).show();
+                        return true;
+                    case R.id.search_medicine:
+                        Intent intent=new Intent(getActivity(), MedicineSearchActivity.class);
+                        startActivity(intent);
                         return true;
                     default:
                         return false;
