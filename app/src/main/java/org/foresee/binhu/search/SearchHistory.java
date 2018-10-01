@@ -1,8 +1,10 @@
-package org.foresee.binhu;
+package org.foresee.binhu.search;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+
+import org.foresee.binhu.share.Utils;
 
 /**
  * 负责记录搜索历史，使用SharedPreference，因为其中只能存基本类型，所以用字符串，维护定长数组。

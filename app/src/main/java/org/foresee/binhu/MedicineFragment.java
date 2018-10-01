@@ -6,8 +6,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -16,6 +14,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.foresee.binhu.search.MedicineSearchActivity;
+import org.foresee.binhu.share.TabsAdapter;
 
 public class MedicineFragment extends Fragment {
     public static MedicineFragment newInstance(Callbacks callbacks) {
@@ -96,24 +97,4 @@ public class MedicineFragment extends Fragment {
         void onToolbarNavClick();
     }
 
-    public class TabsAdapter extends FragmentPagerAdapter {
-        private Fragment[] mFragments;
-        private String[] mTitles;
-
-        public TabsAdapter(FragmentManager fm, Fragment[] fragments, String[] titles) {
-            super(fm);
-            mFragments = fragments;
-            mTitles = titles;
-        }
-
-        @Override
-        public Fragment getItem(int i) {
-            return mFragments[i];
-        }
-
-        @Override
-        public int getCount() {
-            return mFragments.length;
-        }
-    }
 }

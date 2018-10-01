@@ -1,4 +1,4 @@
-package org.foresee.binhu;
+package org.foresee.binhu.search;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +17,9 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.foresee.binhu.share.DeleteConfirmDialogFragment;
+import org.foresee.binhu.R;
 
 import java.util.Arrays;
 
@@ -46,8 +49,8 @@ public class MedicineSearchActivity extends AppCompatActivity {
                     if (searchText.trim().length() == 0) {
                         return true;
                     }
-                    SearchHistory.saveHistoryString(MedicineSearchActivity.this, searchText);
-                    startSearch(searchText);
+                    SearchHistory.saveHistoryString(getApplicationContext(), searchText);
+                    startSearchActivity(searchText);
                     return true;
                 }
                 return false;
@@ -94,7 +97,7 @@ public class MedicineSearchActivity extends AppCompatActivity {
             public void onClick(View v) {
                 TextView textView = (TextView) v;
 //                Toast.makeText(MedicineSearchActivity.this, textView.getText(), Toast.LENGTH_SHORT).show();
-                startSearch(textView.getText().toString());
+                startSearchActivity(textView.getText().toString());
             }
         };
         mHistoryItems = findViewById(R.id.history_items);
@@ -184,8 +187,8 @@ public class MedicineSearchActivity extends AppCompatActivity {
         return rowLinear;
     }
 
-    private void startSearch(String searchText) {
-        Log.d(TAG, "startSearch: searchText = " + searchText);
+    private void startSearchActivity(String searchText) {
+        Log.d(TAG, "startSearchActivity: searchText = " + searchText);
         Intent intent = MedicineSearchResultActivity.newIntent(MedicineSearchActivity.this, searchText);
         startActivity(intent);
     }

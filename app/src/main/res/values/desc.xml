@@ -3,4 +3,5 @@
     <string name="head_img_desc">用户头像</string>
     <string name="btn_desc">未定义按钮</string>
     <string name="search_medicine_desc">输入要搜索的中药名称</string>
+    <string name="medicine_img_desc">中药照片</string>
 </resources>

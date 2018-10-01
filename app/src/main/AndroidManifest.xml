@@ -16,8 +16,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".SettingActivity" />
-        <activity android:name=".MedicineSearchActivity" />
-        <activity android:name=".MedicineSearchResultActivity"/>
+        <activity android:name=".search.MedicineSearchActivity" />
+        <activity android:name=".search.MedicineSearchResultActivity"/>
     </application>
 
 </manifest>

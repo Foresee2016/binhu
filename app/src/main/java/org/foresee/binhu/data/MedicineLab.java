@@ -1,4 +1,6 @@
-package org.foresee.binhu;
+package org.foresee.binhu.data;
+
+import org.foresee.binhu.model.Medicine;
 
 import java.util.ArrayList;
 import java.util.List;

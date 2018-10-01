@@ -1,4 +1,4 @@
-package org.foresee.binhu;
+package org.foresee.binhu.share;
 
 public class Utils {
 

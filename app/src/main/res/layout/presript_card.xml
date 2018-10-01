@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="120dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:padding="4dp">
+    <!--<ImageView-->
+        <!--android:id="@+id/thumbnail"-->
+        <!--android:layout_width="100dp"-->
+        <!--android:layout_height="100dp"-->
+        <!--android:src="@drawable/shape_white_rect"-->
+        <!--android:contentDescription="@string/medicine_img_desc"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toTopOf="parent"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"/>-->
+    <TextView
+        android:id="@+id/prescript_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        tools:text="藿香正气"/>
+    <TextView
+        android:id="@+id/prescript_func"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="功能主治"/>
+</LinearLayout>
