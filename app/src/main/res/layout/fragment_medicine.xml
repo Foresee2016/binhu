@@ -23,7 +23,8 @@
         app:tabTextColor="@color/gray"
         android:background="@color/white"
         app:tabGravity="fill"
-        app:tabMaxWidth="0dp"
+        app:tabPaddingStart="1dp"
+        app:tabPaddingEnd="1dp"
         app:tabMode="fixed"
         app:tabSelectedTextColor="@color/pink">
     </android.support.design.widget.TabLayout>
