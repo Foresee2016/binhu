@@ -9,8 +9,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.View;
 import android.view.Window;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -31,6 +33,7 @@ public class MedicineSearchResultActivity extends AppCompatActivity {
 
     private String mSearchString;
     private EditText searchEditText;
+    private TextView mCancel;
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
     private String[] mTitles = new String[]{"中药", "附方"};
@@ -47,6 +50,7 @@ public class MedicineSearchResultActivity extends AppCompatActivity {
         }
         searchEditText = findViewById(R.id.search_edit_text);
         searchEditText.setText(mSearchString);
+        searchEditText.setSelection(mSearchString.length());
         searchEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -61,6 +65,13 @@ public class MedicineSearchResultActivity extends AppCompatActivity {
                     return true;
                 }
                 return false;
+            }
+        });
+        mCancel = findViewById(R.id.cancel);
+        mCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
         mViewPager = findViewById(R.id.view_pager);
@@ -80,7 +91,10 @@ public class MedicineSearchResultActivity extends AppCompatActivity {
             }
         }
     }
-
+//    private void hideSoftInput(){
+//        InputMethodManager imm= (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+//        imm.hideSoftInputFromWindow(searchEditText.getWindowToken(), 0);
+//    }
     private void startSearchTask(String searchText) {
         Log.d(TAG, "startSearchTask: searchText = " + searchText);
     }

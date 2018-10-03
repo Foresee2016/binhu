@@ -5,18 +5,18 @@ import java.util.List;
 
 public class Prescript {
     private String mName;
-    private List<String> mMedicines;
+    private List<String> mComponents;
     private String mFunc;
 
     public Prescript(String name) {
         mName = name;
-        mMedicines=new ArrayList<>();
+        mComponents =new ArrayList<>();
     }
     public void addMedicine(String medicineName){
-        mMedicines.add(medicineName);
+        mComponents.add(medicineName);
     }
-    public List<String> getMedicines() {
-        return mMedicines;
+    public List<String> getComponents() {
+        return mComponents;
     }
 
     public String getName() {

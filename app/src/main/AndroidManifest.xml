@@ -15,9 +15,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SettingActivity" />
-        <activity android:name=".search.MedicineSearchActivity" />
-        <activity android:name=".search.MedicineSearchResultActivity"/>
+        <activity android:name=".setting.SettingActivity" />
+        <activity android:name=".search.MedicineSearchActivity"
+            android:windowSoftInputMode="stateVisible"/>
+        <activity android:name=".search.MedicineSearchResultActivity"
+            android:windowSoftInputMode="stateHidden"/>
     </application>
 
 </manifest>

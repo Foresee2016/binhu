@@ -8,9 +8,8 @@
         style="@style/toolbar"
         app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="@drawable/ic_menu"
-        app:subtitleTextColor="#ffffff"
-        app:title="@string/app_name"
-        app:titleTextColor="#ffffff" />
+        app:titleTextColor="@color/white"
+        app:title="@string/app_name" />
 
     <LinearLayout
         android:orientation="vertical"

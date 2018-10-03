@@ -1,27 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/pink"
-    android:paddingTop="24dp">
+    android:orientation="vertical"
+    style="@style/top_container">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/tool_bar"
-        app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="@drawable/ic_back"
-        app:subtitleTextColor="#ffffff"
         app:title="@string/setting"
-        app:titleTextColor="#ffffff"
+        app:titleTextColor="@color/white"
         style="@style/toolbar" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
         android:background="@color/bgContent"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tool_bar">
+        android:orientation="vertical">
 
         <View style="@style/setting_vertical_separator" />
 
@@ -38,6 +32,9 @@
         <TextView
             style="@style/setting_item.right_arrow"
             android:text="@string/update_setting" />
+        <TextView
+            style="@style/setting_item.right_arrow"
+            android:text="@string/about" />
 
         <View style="@style/setting_vertical_separator" />
 
@@ -49,4 +46,4 @@
             android:text="@string/logout"
             android:textColor="@color/red" />
     </LinearLayout>
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

@@ -1,4 +1,4 @@
-package org.foresee.binhu;
+package org.foresee.binhu.share;
 
 import android.content.Context;
 import android.preference.PreferenceManager;

@@ -28,7 +28,12 @@
             android:gravity="center"
             android:text="@{viewModel.name}"
             tools:text="藿香正气" />
-
+        <TextView
+            android:id="@+id/components"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.components}"
+            tools:text="成分"/>
         <TextView
             android:id="@+id/prescript_func"
             android:layout_width="match_parent"

@@ -12,7 +12,7 @@ import org.foresee.binhu.share.Utils;
 public class SearchHistory {
     private static final int HISTORY_ITEM_COUNT = 20; //记录搜索历史数量
     private static final String HISTORY_KEY = "search_history";
-    private static final String DELIMITER="\r\n";
+    private static final String DELIMITER="#";
 
     public static void saveHistoryString(Context context, String item) {
         String[] items = getHistoryString(context);

@@ -6,17 +6,35 @@
     android:layout_height="128dp"
     android:layout_margin="16dp"
     android:background="@android:color/white"
-    android:elevation="2dp">
+    android:elevation="2dp"
+    tools:layout_marginTop="30dp">
     <ImageView
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="200dp"
+        android:layout_height="120dp"
         android:src="@drawable/medicine_img_holder"
         android:id="@+id/medicine_img"/>
     <TextView
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/medicine_img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/medicine_name"
         tools:text="药名称"/>
+    <TextView
+        android:id="@+id/taste"
+        app:layout_constraintTop_toBottomOf="@id/medicine_name"
+        app:layout_constraintStart_toEndOf="@id/medicine_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="气味"/>
+    <TextView
+        android:id="@+id/func"
+        app:layout_constraintTop_toBottomOf="@id/taste"
+        app:layout_constraintStart_toEndOf="@id/medicine_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="功能"/>
 </android.support.constraint.ConstraintLayout>

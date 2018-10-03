@@ -5,10 +5,11 @@ import java.util.List;
 
 public class MedicineInfo {
     private String mName;
-    private String mMainImage;
+    private String mMainImage;//冗余一些信息，方便在主界面显示缩略图和简介
     private List<MedicinePart> mParts;
     private String mFrom = "无";
-
+    private String mTaste;
+    private String mFunc;
 
     public MedicineInfo(String name) {
         mName = name;
@@ -43,6 +44,7 @@ public class MedicineInfo {
         private String mPartName;
         private String mTaste;
         private String mFunc;
+        private boolean mMainPart;
         private List<String> mImages;
 
         public MedicinePart(String partName) {
@@ -72,6 +74,14 @@ public class MedicineInfo {
 
         public void setFunc(String func) {
             mFunc = func;
+        }
+
+        public boolean isMainPart() {
+            return mMainPart;
+        }
+
+        public void setMainPart(boolean mainPart) {
+            mMainPart = mainPart;
         }
 
         public List<String> getImages() {

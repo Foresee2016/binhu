@@ -1,5 +1,6 @@
 package org.foresee.binhu.search;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -22,6 +24,8 @@ import org.foresee.binhu.share.DeleteConfirmDialogFragment;
 import org.foresee.binhu.R;
 
 import java.util.Arrays;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MedicineSearchActivity extends AppCompatActivity {
     private static final String TAG = "MedicineSearchActivity";
@@ -40,6 +44,7 @@ public class MedicineSearchActivity extends AppCompatActivity {
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_medicine_search);
         mSearchText = findViewById(R.id.search_edit_text);
+        mSearchText.setText("");
         mSearchText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -106,9 +111,13 @@ public class MedicineSearchActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        mSearchText.setText("");
-        mSearchText.requestFocus();
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+        showSoftInput();
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                showSoftInput();
+            }
+        }, 300);
     }
 
     @Override
@@ -118,7 +127,12 @@ public class MedicineSearchActivity extends AppCompatActivity {
             freshHistoryItems();
         }
     }
-
+    private void showSoftInput(){
+//        Log.d(TAG, "showSoftInput: 弹出软键盘");
+        mSearchText.requestFocus();
+//        InputMethodManager imm= (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+//        imm.showSoftInput(mSearchText, 0);
+    }
     private void freshHistoryItems() {
         freshHistoryItems(mHistoryLimit);
     }

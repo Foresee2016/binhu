@@ -1,5 +1,7 @@
 package org.foresee.binhu.model;
 
+import org.foresee.binhu.share.Utils;
+
 public class PrescriptViewModel {
     private Prescript mPrescript;
 
@@ -17,5 +19,9 @@ public class PrescriptViewModel {
 
     public String getFunc() {
         return mPrescript.getFunc();
+    }
+
+    public String getComponents() {
+        return "成分：" + Utils.join(" ", mPrescript.getComponents());
     }
 }

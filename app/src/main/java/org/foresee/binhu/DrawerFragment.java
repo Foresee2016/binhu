@@ -11,6 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import org.foresee.binhu.setting.SettingActivity;
+import org.foresee.binhu.share.SettingPreferences;
+
 public class DrawerFragment extends Fragment {
     public static DrawerFragment newInstance(DrawerMenuClickListener drawerMenuClickListener) {
         DrawerFragment fragment = new DrawerFragment();
