@@ -3,51 +3,51 @@ package org.foresee.binhu.model;
 import java.sql.Timestamp;
 
 public class UpdateInfo {
-	private int id;
-	private Timestamp updateTime=new Timestamp(System.currentTimeMillis());
-	private String part;
-	private int dataSize;
-	private int dataCount;
+	private int mId;
+	private Timestamp mUpdateTime =new Timestamp(System.currentTimeMillis());
+	private String mPart;
+	private int mDataSize;
+	private int mDataCount;
 	
 	public UpdateInfo() {
 		super();
 	}
 	public UpdateInfo(Timestamp updateTime, String part, int dataSize, int dataCount) {
 		super();
-		this.updateTime = updateTime;
-		this.part = part;
-		this.dataSize = dataSize;
-		this.dataCount = dataCount;
+		this.mUpdateTime = updateTime;
+		this.mPart = part;
+		this.mDataSize = dataSize;
+		this.mDataCount = dataCount;
 	}
 	public int getId() {
-		return id;
+		return mId;
 	}
 	public void setId(int id) {
-		this.id = id;
+		this.mId = id;
 	}
 	public Timestamp getUpdateTime() {
-		return updateTime;
+		return mUpdateTime;
 	}
 	public void setUpdateTime(Timestamp updateTime) {
-		this.updateTime = updateTime;
+		this.mUpdateTime = updateTime;
 	}
 	public String getPart() {
-		return part;
+		return mPart;
 	}
 	public void setPart(String part) {
-		this.part = part;
+		this.mPart = part;
 	}
 	public int getDataSize() {
-		return dataSize;
+		return mDataSize;
 	}
 	public void setDataSize(int dataSize) {
-		this.dataSize = dataSize;
+		this.mDataSize = dataSize;
 	}
 	public int getDataCount() {
-		return dataCount;
+		return mDataCount;
 	}
 	public void setDataCount(int data_count) {
-		this.dataCount = data_count;
+		this.mDataCount = data_count;
 	}
 	
 }

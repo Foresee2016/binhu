@@ -4,57 +4,57 @@ import java.sql.Timestamp;
 import java.util.List;
 
 public class Prescript {
-	private int id;
-	private String name;
-	private List<Component> components;
-	private String func;
-	private Timestamp updateTime = new Timestamp(System.currentTimeMillis());
+	private int mId;
+	private String mName;
+	private List<Component> mComponents;
+	private String mFunc;
+	private Timestamp mUpdateTime = new Timestamp(System.currentTimeMillis());
 
 	public Prescript() {
 	}
 
 	public Prescript(String name) {
-		this.name = name;
+		this.mName = name;
 	}
 
 	public Timestamp getUpdateTime() {
-		return updateTime;
+		return mUpdateTime;
 	}
 
 	public void setUpdateTime(Timestamp updateTime) {
-		this.updateTime = updateTime;
+		this.mUpdateTime = updateTime;
 	}
 
 	public int getId() {
-		return id;
+		return mId;
 	}
 
 	public void setId(int id) {
-		this.id = id;
+		this.mId = id;
 	}
 
 	public String getName() {
-		return name;
+		return mName;
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		this.mName = name;
 	}
 
 	public List<Component> getComponents() {
-		return components;
+		return mComponents;
 	}
 
 	public void setComponents(List<Component> components) {
-		this.components = components;
+		this.mComponents = components;
 	}
 
 	public String getFunc() {
-		return func;
+		return mFunc;
 	}
 
 	public void setFunc(String func) {
-		this.func = func;
+		this.mFunc = func;
 	}
 
 }

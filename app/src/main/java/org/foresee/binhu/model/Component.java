@@ -1,49 +1,49 @@
 package org.foresee.binhu.model;
 
 public class Component {
-	private int id;
-	private int prescriptId;
-	private String medicineName;
-	private String weight;
-	private String process;
+	private int mId;
+	private int mPrescriptId;
+	private String mMedicineName;
+	private String mWeight;
+	private String mProcess;
 
 	public int getId() {
-		return id;
+		return mId;
 	}
 
 	public void setId(int id) {
-		this.id = id;
+		this.mId = id;
 	}
 
 	public int getPrescriptId() {
-		return prescriptId;
+		return mPrescriptId;
 	}
 
 	public void setPrescriptId(int prescriptId) {
-		this.prescriptId = prescriptId;
+		this.mPrescriptId = prescriptId;
 	}
 
 	public String getMedicineName() {
-		return medicineName;
+		return mMedicineName;
 	}
 
 	public void setMedicineName(String medicineName) {
-		this.medicineName = medicineName;
+		this.mMedicineName = medicineName;
 	}
 
 	public String getWeight() {
-		return weight;
+		return mWeight;
 	}
 
 	public void setWeight(String weight) {
-		this.weight = weight;
+		this.mWeight = weight;
 	}
 
 	public String getProcess() {
-		return process;
+		return mProcess;
 	}
 
 	public void setProcess(String process) {
-		this.process = process;
+		this.mProcess = process;
 	}
 }
