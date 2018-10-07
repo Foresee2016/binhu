@@ -20,10 +20,10 @@ public class PrescriptLab {
         mPrescripts = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             Prescript prescript = new Prescript("方剂名称" + i);
-            int rand = (int) (Math.random() * 10);
-            for (int j = 0; j < rand; j++) {
-                prescript.addMedicine("成分" + j);
-            }
+//            int rand = (int) (Math.random() * 10);
+//            for (int j = 0; j < rand; j++) {
+//                prescript.addMedicine("成分" + j);
+//            }
             prescript.setFunc("功能主治" + i);
             mPrescripts.add(prescript);
         }

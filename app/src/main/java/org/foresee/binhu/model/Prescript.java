@@ -9,7 +9,14 @@ public class Prescript {
 	private List<Component> components;
 	private String func;
 	private Timestamp updateTime = new Timestamp(System.currentTimeMillis());
-	
+
+	public Prescript() {
+	}
+
+	public Prescript(String name) {
+		this.name = name;
+	}
+
 	public Timestamp getUpdateTime() {
 		return updateTime;
 	}
