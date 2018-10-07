@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tool_bar"
+    app:navigationIcon="@drawable/ic_back"
+    app:title="@string/setting"
+    app:titleTextColor="@color/white"
+    style="@style/toolbar"
+    tools:showIn="@layout/activity_setting" />

@@ -1,15 +1,23 @@
 package org.foresee.binhu.setting;
 
+import android.content.Context;
+import android.content.Intent;
+
+import org.foresee.binhu.R;
+
 public class AboutActivity extends BackNavActivity {
+    public static Intent newIntent(Context context) {
+        Intent intent = new Intent(context, AboutActivity.class);
+        return intent;
+    }
+
     @Override
     public int getLayout() {
-//        return R.layout.activity_about;
-        return 0;
+        return R.layout.activity_about;
     }
 
     @Override
     public int getToolbarTitleResId() {
-//        return R.string.about;
-        return 9;
+        return R.string.about;
     }
 }

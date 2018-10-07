@@ -4,12 +4,7 @@
     android:orientation="vertical"
     style="@style/top_container">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/tool_bar"
-        app:navigationIcon="@drawable/ic_back"
-        app:title="@string/setting"
-        app:titleTextColor="@color/white"
-        style="@style/toolbar" />
+    <include layout="@layout/toolbar_single_back_nav" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -33,6 +28,7 @@
             style="@style/setting_item.right_arrow"
             android:text="@string/update_setting" />
         <TextView
+            android:id="@+id/about"
             style="@style/setting_item.right_arrow"
             android:text="@string/about" />
 

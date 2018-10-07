@@ -1,37 +1,53 @@
 package org.foresee.binhu.model;
 
-import java.util.ArrayList;
+import java.sql.Timestamp;
 import java.util.List;
 
 public class Prescript {
-    private String mName;
-    private List<String> mComponents;
-    private String mFunc;
+	private int id;
+	private String name;
+	private List<Component> components;
+	private String func;
+	private Timestamp updateTime = new Timestamp(System.currentTimeMillis());
+	
+	public Timestamp getUpdateTime() {
+		return updateTime;
+	}
 
-    public Prescript(String name) {
-        mName = name;
-        mComponents =new ArrayList<>();
-    }
-    public void addMedicine(String medicineName){
-        mComponents.add(medicineName);
-    }
-    public List<String> getComponents() {
-        return mComponents;
-    }
+	public void setUpdateTime(Timestamp updateTime) {
+		this.updateTime = updateTime;
+	}
 
-    public String getName() {
-        return mName;
-    }
+	public int getId() {
+		return id;
+	}
 
-    public void setName(String name) {
-        mName = name;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public String getFunc() {
-        return mFunc;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setFunc(String func) {
-        mFunc = func;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public List<Component> getComponents() {
+		return components;
+	}
+
+	public void setComponents(List<Component> components) {
+		this.components = components;
+	}
+
+	public String getFunc() {
+		return func;
+	}
+
+	public void setFunc(String func) {
+		this.func = func;
+	}
+
 }
