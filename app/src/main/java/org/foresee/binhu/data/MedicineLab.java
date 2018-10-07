@@ -23,8 +23,8 @@ public class MedicineLab {
     private List<Medicine> mMedicines;
 
     private MedicineLab(Context context) {
-        mContext=context;
-        mSqLiteDatabase=new MedicineDbHelper(context).getWritableDatabase();
+        mContext = context.getApplicationContext();
+        mSqLiteDatabase = new MedicineDbHelper(mContext).getWritableDatabase();
         mMedicines = new ArrayList<>();
         for (int i = 0; i < 50; i++) {
             mMedicines.add(new Medicine("药名"));
