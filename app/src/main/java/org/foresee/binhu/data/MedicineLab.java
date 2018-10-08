@@ -2,6 +2,7 @@ package org.foresee.binhu.data;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import org.foresee.binhu.model.Medicine;
@@ -35,8 +36,29 @@ public class MedicineLab {
 //        }
     }
 
+    private MedicineCursorWrapper queryMedicines(String whereClause, String[] whereArgs){
+        Cursor cursor=mSqLiteDatabase.query(MedicineTable.TABLE_NAME, null,whereClause, whereArgs,null,null,null);
+        return new MedicineCursorWrapper(cursor);
+    }
     public List<Medicine> getMedicines() {
+        mMedicines=new ArrayList<>();
+        try (MedicineCursorWrapper cursor = queryMedicines(null, null)) {
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                mMedicines.add(cursor.getMedicine());
+                cursor.moveToNext();
+            }
+        }
         return mMedicines;
+    }
+    public Medicine getMedicine(String name){
+        try (MedicineCursorWrapper cursor = queryMedicines(MedicineTable.Cols.NAME + " = ?", new String[]{name})) {
+            if (cursor.getCount() == 0) {
+                return null;
+            }
+            cursor.moveToFirst();
+            return cursor.getMedicine();
+        }
     }
     public void saveNewMedicine(Collection<Medicine> medicines){
         for (Medicine m : medicines) {

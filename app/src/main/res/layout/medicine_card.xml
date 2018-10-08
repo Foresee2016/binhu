@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,34 +7,40 @@
     android:layout_margin="16dp"
     android:background="@android:color/white"
     android:elevation="2dp"
+    android:orientation="horizontal"
     tools:layout_marginTop="30dp">
+
     <ImageView
-        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/medicine_img"
+        android:layout_width="180dp"
+        android:layout_height="match_parent"
+        android:src="@drawable/medicine_img_holder"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_width="200dp"
-        android:layout_height="120dp"
-        android:src="@drawable/medicine_img_holder"
-        android:id="@+id/medicine_img"/>
-    <TextView
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@id/medicine_img"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/medicine_name"
-        tools:text="药名称"/>
-    <TextView
-        android:id="@+id/taste"
-        app:layout_constraintTop_toBottomOf="@id/medicine_name"
-        app:layout_constraintStart_toEndOf="@id/medicine_img"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="气味"/>
-    <TextView
-        android:id="@+id/func"
-        app:layout_constraintTop_toBottomOf="@id/taste"
-        app:layout_constraintStart_toEndOf="@id/medicine_img"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="功能"/>
-</android.support.constraint.ConstraintLayout>
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/medicine_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="药名称" />
+
+        <TextView
+            android:id="@+id/taste"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="气味" />
+
+        <TextView
+            android:id="@+id/func"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="none"
+            tools:text="功能" />
+    </LinearLayout>
+</LinearLayout>

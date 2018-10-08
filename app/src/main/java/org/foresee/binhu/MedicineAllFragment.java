@@ -36,22 +36,32 @@ public class MedicineAllFragment extends Fragment {
         return view;
     }
     public void freshDbToUI(){
+        mMedicines=MedicineLab.getMedicineLab(getActivity()).getMedicines();
+        mMedicineCardAdapter.setMedicines(mMedicines);
         mMedicineCardAdapter.notifyDataSetChanged();
     }
     private class MedicineCardHolder extends RecyclerView.ViewHolder{
-        private TextView mTextView;
+        private TextView mName, mTaste, mFunc;
         public MedicineCardHolder(@NonNull View itemView) {
             super(itemView);
-            mTextView=itemView.findViewById(R.id.medicine_name);
+            mName =itemView.findViewById(R.id.medicine_name);
+            mTaste=itemView.findViewById(R.id.taste);
+            mFunc=itemView.findViewById(R.id.func);
         }
         public void bind(Medicine medicine){
-            mTextView.setText(medicine.getName());
+            mName.setText(medicine.getName());
+            mTaste.setText(medicine.getTaste());
+            mFunc.setText(medicine.getFunc());
         }
     }
     private class MedicineCardAdapter extends RecyclerView.Adapter<MedicineCardHolder>{
         private List<Medicine> mMedicines;
 
         public MedicineCardAdapter(List<Medicine> medicines) {
+            mMedicines = medicines;
+        }
+
+        public void setMedicines(List<Medicine> medicines) {
             mMedicines = medicines;
         }
 
