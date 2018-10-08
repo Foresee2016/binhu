@@ -1,11 +1,15 @@
 package org.foresee.binhu.data;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
 import org.foresee.binhu.model.Medicine;
+import org.foresee.binhu.share.Utils;
 
+import static org.foresee.binhu.data.DbSchama.MedicineTable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class MedicineLab {
@@ -24,14 +28,31 @@ public class MedicineLab {
 
     private MedicineLab(Context context) {
         mContext = context.getApplicationContext();
-        mSqLiteDatabase = new MedicineDbHelper(mContext).getWritableDatabase();
+        mSqLiteDatabase = new BinhuDbHelper(mContext).getWritableDatabase();
         mMedicines = new ArrayList<>();
-        for (int i = 0; i < 50; i++) {
-            mMedicines.add(new Medicine("药名"));
-        }
+//        for (int i = 0; i < 50; i++) {
+//            mMedicines.add(new Medicine("药名"));
+//        }
     }
 
     public List<Medicine> getMedicines() {
         return mMedicines;
+    }
+    public void saveNewMedicine(Collection<Medicine> medicines){
+        for (Medicine m : medicines) {
+            ContentValues values=getContentValues(m);
+            mSqLiteDatabase.insert(MedicineTable.TABLE_NAME, null,values);
+        }
+        mMedicines.addAll(medicines);
+    }
+    private ContentValues getContentValues(Medicine medicine){
+        ContentValues values=new ContentValues();
+        values.put(MedicineTable.Cols.NAME, medicine.getName());
+        values.put(MedicineTable.Cols.TASTE, medicine.getTaste());
+        values.put(MedicineTable.Cols.THUMBNAIL, medicine.getThumbnail());
+        values.put(MedicineTable.Cols.FUNC, medicine.getFunc());
+        values.put(MedicineTable.Cols.IMAGES, medicine.getImages());
+        values.put(MedicineTable.Cols.UPDATETIME, Utils.formatDate(medicine.getUpdateTime()));
+        return values;
     }
 }

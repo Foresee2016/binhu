@@ -1,10 +1,9 @@
 package org.foresee.binhu.model;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 public class UpdateInfo {
-	private int mId;
-	private Timestamp mUpdateTime =new Timestamp(System.currentTimeMillis());
+	private Date mUpdateTime;
 	private String mPart;
 	private int mDataSize;
 	private int mDataCount;
@@ -12,23 +11,17 @@ public class UpdateInfo {
 	public UpdateInfo() {
 		super();
 	}
-	public UpdateInfo(Timestamp updateTime, String part, int dataSize, int dataCount) {
+	public UpdateInfo(Date updateTime, String part, int dataSize, int dataCount) {
 		super();
 		this.mUpdateTime = updateTime;
 		this.mPart = part;
 		this.mDataSize = dataSize;
 		this.mDataCount = dataCount;
 	}
-	public int getId() {
-		return mId;
-	}
-	public void setId(int id) {
-		this.mId = id;
-	}
-	public Timestamp getUpdateTime() {
+	public Date getUpdateTime() {
 		return mUpdateTime;
 	}
-	public void setUpdateTime(Timestamp updateTime) {
+	public void setUpdateTime(Date updateTime) {
 		this.mUpdateTime = updateTime;
 	}
 	public String getPart() {

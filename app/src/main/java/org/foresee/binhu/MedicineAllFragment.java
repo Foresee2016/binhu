@@ -21,18 +21,22 @@ public class MedicineAllFragment extends Fragment {
         return new MedicineAllFragment();
     }
 //    private Context mContext;
-    private List<Medicine> mMedicines= MedicineLab.getMedicineLab().getMedicines();
+    private List<Medicine> mMedicines;
     private RecyclerView mRecyclerView;
     private MedicineCardAdapter mMedicineCardAdapter;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.recycler_view, container, false);
+        mMedicines=MedicineLab.getMedicineLab(getActivity()).getMedicines();
         mRecyclerView=view.findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mMedicineCardAdapter=new MedicineCardAdapter(mMedicines);
         mRecyclerView.setAdapter(mMedicineCardAdapter);
         return view;
+    }
+    public void freshDbToUI(){
+        mMedicineCardAdapter.notifyDataSetChanged();
     }
     private class MedicineCardHolder extends RecyclerView.ViewHolder{
         private TextView mTextView;

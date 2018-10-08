@@ -1,5 +1,11 @@
 package org.foresee.binhu.share;
 
+import android.text.format.DateFormat;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Utils {
     public static String join(String delimiter, String... strings){
         StringBuilder builder = new StringBuilder();
@@ -20,5 +26,15 @@ public class Utils {
             }
         }
         return builder.toString();
+    }
+    private static final String DATE_TIME_PATTERN="yyyy-MM-dd HH:mm:ss";
+    private static final SimpleDateFormat DATE_FORMATER=new SimpleDateFormat(DATE_TIME_PATTERN);
+    public static final Date DEFAULT_DATE=new Date(1994,7,21,13,05,00);
+
+    public static String formatDate(Date date){
+        return DateFormat.format(DATE_TIME_PATTERN, date).toString();
+    }
+    public static Date parseDate(String dateStr) throws ParseException {
+        return DATE_FORMATER.parse(dateStr);
     }
 }

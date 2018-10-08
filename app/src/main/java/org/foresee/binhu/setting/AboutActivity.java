@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import org.foresee.binhu.R;
+import org.foresee.binhu.share.BackNavActivity;
 
 public class AboutActivity extends BackNavActivity {
     public static Intent newIntent(Context context) {

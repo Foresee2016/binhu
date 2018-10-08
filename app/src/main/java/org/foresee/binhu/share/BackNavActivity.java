@@ -1,4 +1,4 @@
-package org.foresee.binhu.setting;
+package org.foresee.binhu.share;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

@@ -4,7 +4,6 @@ public class DbSchama {
     public static final class UpdateInfoTable{
         public static final String TABLE_NAME="update_info";
         public static final class Cols{
-            public static final String ID="id";
             public static final String PART="part";
             public static final String DATASIZE="dataSize";
             public static final String DATACOUNT="dataCount";

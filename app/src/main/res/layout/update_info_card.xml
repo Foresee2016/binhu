@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="viewModel"
+            type="org.foresee.binhu.model.UpdateInfoViewModel"/>
+    </data>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+        <TextView
+            android:id="@+id/update_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.updateTime}"
+            tools:text="2018-10-08 11:22:00"/>
+        <TextView
+            android:id="@+id/part"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.part}"
+            tools:text="根"/>
+        <TextView
+            android:id="@+id/count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.dataCount}"
+            tools:text="10条"/>
+        <TextView
+            android:id="@+id/size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.dataSize}"
+            tools:text="2KB"/>
+        <Button
+            android:id="@+id/btn_download"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/download"/>
+    </LinearLayout>
+</layout>

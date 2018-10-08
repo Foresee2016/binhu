@@ -1,6 +1,7 @@
 package org.foresee.binhu.model;
 
-import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Prescript {
@@ -8,20 +9,21 @@ public class Prescript {
 	private String mName;
 	private List<Component> mComponents;
 	private String mFunc;
-	private Timestamp mUpdateTime = new Timestamp(System.currentTimeMillis());
+	private Date mUpdateTime;
 
 	public Prescript() {
 	}
 
 	public Prescript(String name) {
 		this.mName = name;
+		mComponents=new ArrayList<>();
 	}
 
-	public Timestamp getUpdateTime() {
+	public Date getUpdateTime() {
 		return mUpdateTime;
 	}
 
-	public void setUpdateTime(Timestamp updateTime) {
+	public void setUpdateTime(Date updateTime) {
 		this.mUpdateTime = updateTime;
 	}
 

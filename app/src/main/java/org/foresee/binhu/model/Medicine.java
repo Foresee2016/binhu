@@ -1,29 +1,20 @@
 package org.foresee.binhu.model;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 public class Medicine {
-    private int mId;
     private String mName;
     private String mThumbnail;
     private String mTaste;
     private String mFunc;
     private String mImages;
-    private Timestamp mUpdateTime = new Timestamp(System.currentTimeMillis());
+    private Date mUpdateTime;
 
     public Medicine() {
     }
 
     public Medicine(String name) {
         this.mName = name;
-    }
-
-    public int getId() {
-        return mId;
-    }
-
-    public void setId(int id) {
-        this.mId = id;
     }
 
     public String getName() {
@@ -66,11 +57,11 @@ public class Medicine {
         this.mImages = images;
     }
 
-    public Timestamp getUpdateTime() {
+    public Date getUpdateTime() {
         return mUpdateTime;
     }
 
-    public void setUpdateTime(Timestamp updateTime) {
+    public void setUpdateTime(Date updateTime) {
         this.mUpdateTime = updateTime;
     }
 }

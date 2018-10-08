@@ -8,6 +8,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 
 import org.foresee.binhu.search.MedicineSearchActivity;
 import org.foresee.binhu.share.TabsAdapter;
+import org.foresee.binhu.web.UpdateInfoActivity;
 
 public class MedicineFragment extends Fragment {
     public static MedicineFragment newInstance(Callbacks callbacks) {
@@ -25,6 +27,7 @@ public class MedicineFragment extends Fragment {
         return fragment;
     }
 
+    private static final String TAG = "MedicineFragment";
     private static final String ARGS_CALLBACKS = "CallBacks";
     private Callbacks mCallbacks;
 
@@ -59,7 +62,7 @@ public class MedicineFragment extends Fragment {
         }
         return view;
     }
-
+    private static final int REQ_UPDATE=1;
     private void initToolbar() {
         mToolbar.inflateMenu(R.menu.toolbar_main);
         mToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
@@ -70,11 +73,13 @@ public class MedicineFragment extends Fragment {
                         Toast.makeText(getActivity(), "Read Pic", Toast.LENGTH_SHORT).show();
                         return true;
                     case R.id.update:
-                        Toast.makeText(getActivity(), "Update data", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getActivity(), "Update data", Toast.LENGTH_SHORT).show();
+                        Intent updateIntent=UpdateInfoActivity.newIntent(getActivity());
+                        startActivityForResult(updateIntent, REQ_UPDATE);
                         return true;
                     case R.id.search_medicine:
-                        Intent intent=new Intent(getActivity(), MedicineSearchActivity.class);
-                        startActivity(intent);
+                        Intent searchIntent=new Intent(getActivity(), MedicineSearchActivity.class);
+                        startActivity(searchIntent);
                         return true;
                     default:
                         return false;
@@ -87,6 +92,19 @@ public class MedicineFragment extends Fragment {
                 mCallbacks.onToolbarNavClick();
             }
         });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==REQ_UPDATE){
+            Log.i(TAG, "onActivityResult: resultCode = "+resultCode);
+            boolean hasNewData=UpdateInfoActivity.hasNewData(data);
+            Log.i(TAG, "onActivityResult: hasNewData = "+hasNewData);
+            if(hasNewData){
+                ((MedicineAllFragment)mFragments[0]).freshDbToUI();
+            }
+        }
     }
 
     public void setCallbacks(Callbacks callbacks) {
