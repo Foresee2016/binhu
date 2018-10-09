@@ -37,7 +37,7 @@ public class DrawerFragment extends Fragment {
         mMenuHome.setOnClickListener(menuListener);
         mMenuHistory.setOnClickListener(menuListener);
         mMenuStar.setOnClickListener(menuListener);
-
+        mMenuHome.setSelected(true);
         mSetting = view.findViewById(R.id.btn_setting);
         mSetting.setOnClickListener(new View.OnClickListener() {
             @Override

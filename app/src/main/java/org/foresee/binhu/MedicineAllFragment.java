@@ -19,6 +19,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
+import com.bumptech.glide.request.RequestOptions;
 
 import org.foresee.binhu.data.MedicineLab;
 import org.foresee.binhu.model.Medicine;
@@ -38,7 +40,7 @@ public class MedicineAllFragment extends Fragment {
     private List<Medicine> mMedicines;
     private RecyclerView mRecyclerView;
     private MedicineCardAdapter mMedicineCardAdapter;
-    private ThumbnailDownloader<MedicineCardHolder> mThumbnailDownloader;
+//    private ThumbnailDownloader<MedicineCardHolder> mThumbnailDownloader;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -50,36 +52,36 @@ public class MedicineAllFragment extends Fragment {
         mRecyclerView.setAdapter(mMedicineCardAdapter);
 
         Handler responseHandler = new Handler();
-        mThumbnailDownloader = new ThumbnailDownloader<>(responseHandler);
-        mThumbnailDownloader.setThumbnailDownloadListener(new ThumbnailDownloader.ThumbnailDownloadListener<MedicineCardHolder>() {
-            @Override
-            public void onThumbnailDownloaded(MedicineCardHolder obj, Bitmap thumbnail) {
-                Drawable drawable=new BitmapDrawable(getResources(), thumbnail);
-                obj.bindThumbnail(drawable);
-            }
-
-            @Override
-            public void onError(MedicineCardHolder obj) {
-                Drawable err=ResourcesCompat.getDrawable(getResources(),R.drawable.thumbnail_download_err, null);
-                obj.bindThumbnail(err);
-            }
-        });
-        mThumbnailDownloader.start();
-        mThumbnailDownloader.getLooper();
+//        mThumbnailDownloader = new ThumbnailDownloader<>(responseHandler);
+//        mThumbnailDownloader.setThumbnailDownloadListener(new ThumbnailDownloader.ThumbnailDownloadListener<MedicineCardHolder>() {
+//            @Override
+//            public void onThumbnailDownloaded(MedicineCardHolder obj, Bitmap thumbnail) {
+//                Drawable drawable=new BitmapDrawable(getResources(), thumbnail);
+//                obj.bindThumbnail(drawable);
+//            }
+//
+//            @Override
+//            public void onError(MedicineCardHolder obj) {
+//                Drawable err=ResourcesCompat.getDrawable(getResources(),R.drawable.thumbnail_download_err, null);
+//                obj.bindThumbnail(err);
+//            }
+//        });
+//        mThumbnailDownloader.start();
+//        mThumbnailDownloader.getLooper();
         Log.i(TAG, "Background thread started");
         return view;
     }
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mThumbnailDownloader.quit();
+//        mThumbnailDownloader.quit();
         Log.i(TAG, "Background thread destroyed");
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        mThumbnailDownloader.clearQueue();
+//        mThumbnailDownloader.clearQueue();
     }
 
     public void freshDbToUI(){
@@ -141,9 +143,12 @@ public class MedicineAllFragment extends Fragment {
             //Glide库，超级简单就实现了，真是666
             try {
                 String encode=URLEncoder.encode(mMedicines.get(i).getThumbnail(), "utf8");
-
+                RequestOptions options=new RequestOptions();
+                options.centerCrop().error(R.drawable.thumbnail_download_err).fallback(R.drawable.medicine_img_holder);
                 Glide.with(MedicineAllFragment.this)
                         .load(URL_PREFIX+ encode)
+                        .transition(DrawableTransitionOptions.withCrossFade())
+                        .apply(options)
                         .into(medicineCardHolder.mThumbnail);
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();

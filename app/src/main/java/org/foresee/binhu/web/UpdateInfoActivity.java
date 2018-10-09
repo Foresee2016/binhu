@@ -70,11 +70,11 @@ public class UpdateInfoActivity extends BackNavActivity {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         mUpdateInfoLab = UpdateInfoLab.getMedicineLab(this);
         mMedicineLab = MedicineLab.getMedicineLab(this);
+        sendResult(); //外部会startActivityForResult，先设置默认结果
         if(Utils.isNetworkAvailableAndConnected(this)) {
             new UpdateInfoFethr().execute();
         }else{
-            Log.d(TAG, "onCreate: 网络连接不可用，不能发起请求，设置result");
-            sendResult();
+            Log.d(TAG, "onCreate: 网络连接不可用，不能发起请求");
         }
     }
 
