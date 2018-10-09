@@ -14,10 +14,14 @@ import android.view.Window;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import org.foresee.binhu.data.MedicineLab;
 import org.foresee.binhu.medicine.MedicineAllFragment;
 import org.foresee.binhu.PrescriptFragment;
 import org.foresee.binhu.R;
+import org.foresee.binhu.medicine.MedicineDetailFragment;
+import org.foresee.binhu.model.Medicine;
 import org.foresee.binhu.share.TabsAdapter;
 
 public class MedicineSearchResultActivity extends AppCompatActivity {
@@ -74,7 +78,13 @@ public class MedicineSearchResultActivity extends AppCompatActivity {
             }
         });
         mViewPager = findViewById(R.id.view_pager);
-        mFragments[0] = MedicineAllFragment.newInstance();
+        Medicine medicine = MedicineLab.getMedicineLab(this).getMedicine(mSearchString);
+        if (medicine == null) {
+            mFragments[0] = MedicineAllFragment.newInstance();
+            Toast.makeText(this, "未搜索到中药：" + mSearchString, Toast.LENGTH_LONG).show();
+        } else {
+            mFragments[0] = MedicineDetailFragment.newInstance(medicine);
+        }
         mFragments[1] = PrescriptFragment.newInstance();
         mViewPager.setAdapter(new TabsAdapter(getSupportFragmentManager(), mFragments, mTitles));
         mTabLayout = findViewById(R.id.tab_layout);
@@ -90,7 +100,8 @@ public class MedicineSearchResultActivity extends AppCompatActivity {
             }
         }
     }
-//    private void hideSoftInput(){
+
+    //    private void hideSoftInput(){
 //        InputMethodManager imm= (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 //        imm.hideSoftInputFromWindow(searchEditText.getWindowToken(), 0);
 //    }

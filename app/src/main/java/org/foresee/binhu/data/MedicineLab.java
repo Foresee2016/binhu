@@ -52,7 +52,9 @@ public class MedicineLab {
         return mMedicines;
     }
     public Medicine getMedicine(String name){
-        try (MedicineCursorWrapper cursor = queryMedicines(MedicineTable.Cols.NAME + " = ?", new String[]{name})) {
+        String sql="select * from "+MedicineTable.TABLE_NAME+" where "+MedicineTable.Cols.NAME+" like ?";
+        Cursor cur=mSqLiteDatabase.rawQuery(sql, new String[]{"%"+name+"%"});
+        try (MedicineCursorWrapper cursor = new MedicineCursorWrapper(cur)) {
             if (cursor.getCount() == 0) {
                 return null;
             }
