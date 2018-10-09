@@ -3,6 +3,7 @@ package org.foresee.binhu.web;
 import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -69,7 +70,12 @@ public class UpdateInfoActivity extends BackNavActivity {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         mUpdateInfoLab = UpdateInfoLab.getMedicineLab(this);
         mMedicineLab = MedicineLab.getMedicineLab(this);
-        new UpdateInfoFethr().execute();
+        if(Utils.isNetworkAvailableAndConnected(this)) {
+            new UpdateInfoFethr().execute();
+        }else{
+            Log.d(TAG, "onCreate: 网络连接不可用，不能发起请求，设置result");
+            sendResult();
+        }
     }
 
     private class UpdateInfoFethr extends AsyncTask<Date, Void, List<UpdateInfo>> {
@@ -115,10 +121,13 @@ public class UpdateInfoActivity extends BackNavActivity {
             mAdapter.notifyDataSetChanged();
         }
     }
-
     private void downloadMedicine(String updateTime) {
         Log.i(TAG, "downloadMedicine: 此处应下载对应日期的，服务器还没做筛选查询，这里暂时下载全部中药。updateTime = " + updateTime);
-        new MedicineFetchr().execute(updateTime);
+        if(Utils.isNetworkAvailableAndConnected(this)) {
+            new MedicineFetchr().execute(updateTime);
+        }else{
+            Log.d(TAG, "downloadMedicine: 无网络连接，不能下载");
+        }
     }
     private void sendResult(){
         Log.i(TAG, "sendResult: 设置返回结果，是否下载了新数据");

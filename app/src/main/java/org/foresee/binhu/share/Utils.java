@@ -1,5 +1,7 @@
 package org.foresee.binhu.share;
 
+import android.app.Activity;
+import android.net.ConnectivityManager;
 import android.text.format.DateFormat;
 
 import java.text.ParseException;
@@ -36,5 +38,13 @@ public class Utils {
     }
     public static Date parseDate(String dateStr) throws ParseException {
         return DATE_FORMATER.parse(dateStr);
+    }
+    public static boolean isNetworkAvailableAndConnected(Activity activity) {
+        ConnectivityManager cm =
+                (ConnectivityManager) activity.getSystemService(Activity.CONNECTIVITY_SERVICE);
+        boolean isNetworkAvailable = cm.getActiveNetworkInfo() != null;
+        boolean isNetworkConnected = isNetworkAvailable &&
+                cm.getActiveNetworkInfo().isConnected();
+        return isNetworkConnected;
     }
 }
