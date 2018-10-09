@@ -11,10 +11,10 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
+
+import org.foresee.binhu.medicine.MedicineFragment;
 
 public class MainActivity extends AppCompatActivity implements MedicineFragment.Callbacks {
     private DrawerLayout mDrawerLayout;

@@ -25,6 +25,7 @@
             android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".setting.AboutActivity"/>
         <activity android:name=".web.UpdateInfoActivity"/>
+        <activity android:name=".medicine.MedicineDetailActivity"/>
     </application>
 
 </manifest>

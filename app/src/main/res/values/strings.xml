@@ -57,4 +57,5 @@
     <string name="loading">正在加载</string>
     <string name="download">下载</string>
     <string name="downloading">正在下载</string>
+    <string name="medicine_detail">中药详解</string>
 </resources>

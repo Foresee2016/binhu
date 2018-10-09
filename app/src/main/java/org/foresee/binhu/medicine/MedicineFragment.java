@@ -1,4 +1,4 @@
-package org.foresee.binhu;
+package org.foresee.binhu.medicine;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.foresee.binhu.R;
 import org.foresee.binhu.search.MedicineSearchActivity;
 import org.foresee.binhu.share.TabsAdapter;
 import org.foresee.binhu.web.UpdateInfoActivity;

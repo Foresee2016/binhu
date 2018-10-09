@@ -1,7 +1,6 @@
-package org.foresee.binhu;
+package org.foresee.binhu.medicine;
 
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -22,9 +21,10 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestOptions;
 
+import org.foresee.binhu.R;
 import org.foresee.binhu.data.MedicineLab;
 import org.foresee.binhu.model.Medicine;
-import org.foresee.binhu.web.ThumbnailDownloader;
+import org.foresee.binhu.share.Utils;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -33,22 +33,24 @@ import java.util.List;
 public class MedicineAllFragment extends Fragment {
     private static final String TAG = "MedicineAllFragment";
 
-    public static MedicineAllFragment newInstance(){
+    public static MedicineAllFragment newInstance() {
         return new MedicineAllFragment();
     }
-//    private Context mContext;
+
+    //    private Context mContext;
     private List<Medicine> mMedicines;
     private RecyclerView mRecyclerView;
     private MedicineCardAdapter mMedicineCardAdapter;
-//    private ThumbnailDownloader<MedicineCardHolder> mThumbnailDownloader;
+
+    //    private ThumbnailDownloader<MedicineCardHolder> mThumbnailDownloader;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.recycler_view, container, false);
-        mMedicines=MedicineLab.getMedicineLab(getActivity()).getMedicines();
-        mRecyclerView=view.findViewById(R.id.recycler_view);
+        View view = inflater.inflate(R.layout.recycler_view, container, false);
+        mMedicines = MedicineLab.getMedicineLab(getActivity()).getMedicines();
+        mRecyclerView = view.findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mMedicineCardAdapter=new MedicineCardAdapter(mMedicines);
+        mMedicineCardAdapter = new MedicineCardAdapter(mMedicines);
         mRecyclerView.setAdapter(mMedicineCardAdapter);
 
         Handler responseHandler = new Handler();
@@ -71,6 +73,7 @@ public class MedicineAllFragment extends Fragment {
         Log.i(TAG, "Background thread started");
         return view;
     }
+
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -84,32 +87,48 @@ public class MedicineAllFragment extends Fragment {
 //        mThumbnailDownloader.clearQueue();
     }
 
-    public void freshDbToUI(){
-        mMedicines=MedicineLab.getMedicineLab(getActivity()).getMedicines();
+    public void freshDbToUI() {
+        mMedicines = MedicineLab.getMedicineLab(getActivity()).getMedicines();
         mMedicineCardAdapter.setMedicines(mMedicines);
         mMedicineCardAdapter.notifyDataSetChanged();
     }
-    private class MedicineCardHolder extends RecyclerView.ViewHolder{
+
+    private void toDetail(Medicine medicine) {
+        Intent intent = MedicineDetailActivity.newIntent(getActivity(), medicine);
+        startActivity(intent);
+    }
+
+    private class MedicineCardHolder extends RecyclerView.ViewHolder {
         private TextView mName, mTaste, mFunc;
         private ImageView mThumbnail;
+        private Medicine mMedicine;
         public MedicineCardHolder(@NonNull View itemView) {
             super(itemView);
-            mName =itemView.findViewById(R.id.medicine_name);
-            mTaste=itemView.findViewById(R.id.taste);
-            mFunc=itemView.findViewById(R.id.func);
-            mThumbnail=itemView.findViewById(R.id.thumbnail);
+            mName = itemView.findViewById(R.id.medicine_name);
+            mTaste = itemView.findViewById(R.id.taste);
+            mFunc = itemView.findViewById(R.id.func);
+            mThumbnail = itemView.findViewById(R.id.thumbnail);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    toDetail(mMedicine);
+                }
+            });
         }
-        public void bind(Medicine medicine){
+
+        public void bind(Medicine medicine) {
+            mMedicine=medicine;
             mName.setText(medicine.getName());
             mTaste.setText(medicine.getTaste());
             mFunc.setText(medicine.getFunc());
         }
-        public void bindThumbnail(Drawable drawable){
+
+        public void bindThumbnail(Drawable drawable) {
             mThumbnail.setImageDrawable(drawable);
         }
     }
-    private static final String URL_PREFIX="http://47.93.12.228:8080/binhu/upload/files/";
-    private class MedicineCardAdapter extends RecyclerView.Adapter<MedicineCardHolder>{
+
+    private class MedicineCardAdapter extends RecyclerView.Adapter<MedicineCardHolder> {
         private List<Medicine> mMedicines;
 
         public MedicineCardAdapter(List<Medicine> medicines) {
@@ -122,16 +141,16 @@ public class MedicineAllFragment extends Fragment {
 
         @NonNull
         @Override
-        public MedicineCardHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-            LayoutInflater inflater=LayoutInflater.from(getActivity());
-            View view=inflater.inflate(R.layout.medicine_card, viewGroup, false);
+        public MedicineCardHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, final int i) {
+            LayoutInflater inflater = LayoutInflater.from(getActivity());
+            View view = inflater.inflate(R.layout.medicine_card, viewGroup, false);
             return new MedicineCardHolder(view);
         }
 
         @Override
         public void onBindViewHolder(@NonNull MedicineCardHolder medicineCardHolder, int i) {
             medicineCardHolder.bind(mMedicines.get(i));
-            Drawable placeholder=ResourcesCompat.getDrawable(getResources(), R.drawable.medicine_img_holder, null);
+            Drawable placeholder = ResourcesCompat.getDrawable(getResources(), R.drawable.medicine_img_holder, null);
             medicineCardHolder.bindThumbnail(placeholder);
 //            mThumbnailDownloader.queueThumbnail(medicineCardHolder, URL_PREFIX+mMedicines.get(i).getThumbnail());
 //            try {
@@ -142,13 +161,12 @@ public class MedicineAllFragment extends Fragment {
 //            mThumbnailDownloader.queueThumbnail(medicineCardHolder, "http://47.93.12.228:8080/binhu/upload/桔梗缩略图.jpg");
             //Glide库，超级简单就实现了，真是666
             try {
-                String encode=URLEncoder.encode(mMedicines.get(i).getThumbnail(), "utf8");
-                RequestOptions options=new RequestOptions();
-                options.centerCrop().error(R.drawable.thumbnail_download_err).fallback(R.drawable.medicine_img_holder);
+                String encode = URLEncoder.encode(mMedicines.get(i).getThumbnail(), "utf8");
+
                 Glide.with(MedicineAllFragment.this)
-                        .load(URL_PREFIX+ encode)
+                        .load(Utils.URL_PREFIX + encode)
                         .transition(DrawableTransitionOptions.withCrossFade())
-                        .apply(options)
+                        .apply(Utils.thumbnailOptions())
                         .into(medicineCardHolder.mThumbnail);
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();

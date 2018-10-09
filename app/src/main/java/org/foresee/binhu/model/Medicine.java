@@ -1,8 +1,9 @@
 package org.foresee.binhu.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Medicine {
+public class Medicine implements Serializable {
     private String mName;
     private String mThumbnail;
     private String mTaste;

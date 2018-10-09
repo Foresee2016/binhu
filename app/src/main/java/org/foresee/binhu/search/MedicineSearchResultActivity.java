@@ -12,11 +12,10 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import org.foresee.binhu.MedicineAllFragment;
+import org.foresee.binhu.medicine.MedicineAllFragment;
 import org.foresee.binhu.PrescriptFragment;
 import org.foresee.binhu.R;
 import org.foresee.binhu.share.TabsAdapter;
