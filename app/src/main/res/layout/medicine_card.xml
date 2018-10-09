@@ -11,7 +11,7 @@
     tools:layout_marginTop="30dp">
 
     <ImageView
-        android:id="@+id/medicine_img"
+        android:id="@+id/thumbnail"
         android:layout_width="180dp"
         android:layout_height="match_parent"
         android:src="@drawable/medicine_img_holder"
