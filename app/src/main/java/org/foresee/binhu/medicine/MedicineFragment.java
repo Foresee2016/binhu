@@ -71,7 +71,8 @@ public class MedicineFragment extends Fragment {
             public boolean onMenuItemClick(MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.read_pic:
-                        Toast.makeText(getActivity(), "Read Pic", Toast.LENGTH_SHORT).show();
+                        int err=Integer.parseInt("q");
+                        Toast.makeText(getActivity(), "中药识图功能暂未完成", Toast.LENGTH_SHORT).show();
                         return true;
                     case R.id.update:
 //                        Toast.makeText(getActivity(), "Update data", Toast.LENGTH_SHORT).show();
